@@ -15,8 +15,8 @@ class RetrieveWeatherData {
 
   import RetrieveWeatherData._
 
-  def getCurrentWeather(cities: String*): Seq[CurrentWeather] = {
-    val qry = s"select * from weather.forecast where u = 'c' and woeid in (select woeid from geo.places(1) where text in (${cities.mkString("'", "', '", "'")}))"
+  def getCurrentWeather(cities: String*) = {
+    val qry = s"select * from weather.forecast where u = 'f' and woeid in (select woeid from geo.places(1) where text in (${cities.mkString("'", "', '", "'")}))"
     val weatherData = Http(HomeUri)
       .params(Map("q" -> qry, "format" -> "json"))
       .execute(fromJson[WeatherData])
@@ -24,5 +24,9 @@ class RetrieveWeatherData {
       .body
 
     weatherData.query.results.channel
+  }
+
+  def getCurrentWeather(cities: Array[String]): Seq[CurrentWeather] = {
+    getCurrentWeather(cities: _*)
   }
 }
