@@ -4,8 +4,9 @@ import java.io.{File, PrintWriter}
 
 object GenerateWeather extends App {
 
-  val weather = RetrieveWeatherData()
-    .getCurrentWeather("Sydney,Australia", "Melbourne,Australia", "Brisbane,Australia", "Adelaide,Australia", "Perth,Australia", "Ottawa,Canada")
+  val weather = RetrieveWeatherData().getCurrentWeather("Sydney,Australia", "Melbourne,Australia",
+    "Brisbane,Australia", "Adelaide,Australia", "Perth,Australia", "Ottawa,Canada")
+
   printToFile(new File("weather.txt")) {
     p => weather.foreach(p.println)
   }
