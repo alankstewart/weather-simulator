@@ -17,12 +17,13 @@ val cities = Array(
   "Perth, Australia",
   "Hobart, Australia",
   "Canberra, Australia",
-  "Darwin", "Australia",
+  "Darwin, Australia",
   "Ottawa, Canada",
   "New York, USA",
   "Moscow, Russia",
-  "London", "England",
-  "Toyko", "Japan"
+  "London, England",
+  "Tokyo, Japan",
+  "Montreal, Canada"
 )
 
 lazy val weather = taskKey[Unit]("Weather task")
