@@ -2,7 +2,9 @@ package alankstewart.weather
 
 import java.io.{File, PrintWriter}
 
-object GenerateWeather extends App {
+import com.typesafe.scalalogging.LazyLogging
+
+object GenerateWeather extends App with LazyLogging {
 
   private val cities = args.length match {
     case 0 => Array("Sydney, Australia")
@@ -10,7 +12,7 @@ object GenerateWeather extends App {
   }
 
   val weather = RetrieveWeatherData().getCurrentWeather(cities)
-  weather.foreach(println)
+  weather.foreach(c => logger.info(c.toString))
   printToFile(new File("weather.txt")) {
     p => weather.foreach(p.println)
   }

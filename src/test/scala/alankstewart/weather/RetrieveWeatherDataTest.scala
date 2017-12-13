@@ -1,8 +1,9 @@
 package alankstewart.weather
 
+import com.typesafe.scalalogging.LazyLogging
 import org.scalatest.{FlatSpec, Matchers}
 
-class RetrieveWeatherDataTest extends FlatSpec with Matchers {
+class RetrieveWeatherDataTest extends FlatSpec with Matchers with LazyLogging {
 
   private val weatherData = RetrieveWeatherData()
 
@@ -13,7 +14,7 @@ class RetrieveWeatherDataTest extends FlatSpec with Matchers {
 
   it should "retrieve weather data for multiple cities" in {
     val weather = weatherData.getCurrentWeather("Sydney, Australia", "Perth, Australia", "Chicago, USA", "Ottawa, Canada")
-    weather.foreach(println)
+    weather.foreach(c => logger.debug(c.toString))
     weather should have size 4
   }
 
