@@ -4,19 +4,21 @@ import org.scalatest.{FlatSpec, Matchers}
 
 class RetrieveWeatherDataTest extends FlatSpec with Matchers {
 
+  private val weatherData = RetrieveWeatherData()
+
   "RetrieveWeatherData" should "retrieve weather data for one city only" in {
-    val weather = RetrieveWeatherData().getCurrentWeather("Sydney, Australia")
+    val weather = weatherData.getCurrentWeather("Sydney, Australia")
     weather should have size 1
   }
 
   it should "retrieve weather data for multiple cities" in {
-    val weather = RetrieveWeatherData().getCurrentWeather("Sydney, Australia", "Perth, Australia", "Chicago, USA", "Ottawa, Canada")
+    val weather = weatherData.getCurrentWeather("Sydney, Australia", "Perth, Australia", "Chicago, USA", "Ottawa, Canada")
     weather.foreach(println)
     weather should have size 4
   }
 
   it should "handle non-existent city" in {
-    val weather = RetrieveWeatherData().getCurrentWeather("Sydney, Australia", "Perth, Australia", "Com Foo, Foo Bar")
+    val weather = weatherData.getCurrentWeather("Sydney, Australia", "Perth, Australia", "Com Foo, Foo Bar")
     weather should have size 2
   }
 }

@@ -5,7 +5,7 @@ import java.io.{File, PrintWriter}
 object GenerateWeather extends App {
 
   private val cities = args.length match {
-    case 0 => Array("Sydney,Australia")
+    case 0 => Array("Sydney, Australia")
     case _ => args
   }
 

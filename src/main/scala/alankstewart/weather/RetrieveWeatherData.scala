@@ -11,12 +11,15 @@ object RetrieveWeatherData {
   def apply(): RetrieveWeatherData = new RetrieveWeatherData
 }
 
+/**
+  * Provides weather data from Yahoo.
+  */
 class RetrieveWeatherData {
 
   import RetrieveWeatherData._
 
   def getCurrentWeather(cities: String*) = {
-    val qry = s"select * from weather.forecast where u = 'f' and woeid in (select woeid from geo.places(1) where text in (${cities.mkString("'", "', '", "'")}))"
+    val qry = s"select * from weather.forecast where u = 'c' and woeid in (select woeid from geo.places(1) where text in (${cities.mkString("'", "', '", "'")}))"
     val weatherData = Http(HomeUri)
       .params(Map("q" -> qry, "format" -> "json"))
       .execute(fromJson[WeatherData])
