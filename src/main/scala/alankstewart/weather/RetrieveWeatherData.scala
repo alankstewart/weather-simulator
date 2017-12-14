@@ -29,7 +29,5 @@ class RetrieveWeatherData {
     weatherData.query.results.channel
   }
 
-  def getCurrentWeather(cities: Array[String]): Seq[CurrentWeather] = {
-    getCurrentWeather(cities: _*)
-  }
+  def getCurrentWeather(cities: Array[String]): Seq[CurrentWeather] = getCurrentWeather(cities: _*)
 }
